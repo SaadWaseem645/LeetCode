@@ -1,3 +1,4 @@
 # Project exclude paths
 /out/
 .idea/uiDesigner.xml
+src/Jump_Game_VI.java

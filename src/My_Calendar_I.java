@@ -1,27 +1,51 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.TreeMap;
 
 public class My_Calendar_I {
 
+//    static class MyCalendar {
+//
+//        private List<int[]> list;
+//
+//        public MyCalendar() {
+//            list = new ArrayList<>();
+//        }
+//
+//        public boolean book(int start, int end) {
+//            for(int i = 0; i  < list.size(); ++i){
+//                int[] arr = list.get(i);
+//                if(arr[0] == start || arr[1] == end || (arr[0] < start && arr[1] > start) || (arr[0] < end && arr[1] > end) || (arr[0] > start && arr[1] < end))
+//                    return false;
+//            }
+//
+//            list.add(new int[]{start,end});
+//            return true;
+//        }
+//    }
+
     static class MyCalendar {
 
-        private List<int[]> list;
+        private TreeMap<Integer, Integer> map = new TreeMap<>();
 
         public MyCalendar() {
-            list = new ArrayList<>();
+
         }
 
         public boolean book(int start, int end) {
-            for(int i = 0; i  < list.size(); ++i){
-                int[] arr = list.get(i);
-                if(arr[0] == start || arr[1] == end || (arr[0] < start && arr[1] > start) || (arr[0] < end && arr[1] > end) || (arr[0] > start && arr[1] < end))
-                    return false;
+
+            Integer key = map.lowerKey(end);
+
+            if(key == null || map.get(key) <= start){
+                map.put(start, end);
+                return true;
             }
 
-            list.add(new int[]{start,end});
-            return true;
+            return false;
+
         }
     }
+
 
     public static void main(String[] args) {
         MyCalendar cal = new MyCalendar();
@@ -32,5 +56,7 @@ public class My_Calendar_I {
         System.out.println("true,true,false,false,true,false,true,true,false,false,false,false,false,false,false,false,false,false,false,true\n");
 
     }
+
+
 
 }
